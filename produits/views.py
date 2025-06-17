@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
+from django.contrib import messages
+
 from .models import Produit
 
 # Create your views here.
@@ -26,7 +28,7 @@ def post_produit(request):
 		
 		produit = Produit(nom=nom, prix=prix, date_peremption=date_peremption)
 		produit.save()
-		
+		messages.success(request, "Produit ajouté avec succès !")
 		return redirect('liste_produits')
 	
 	return redirect('add_produit')
