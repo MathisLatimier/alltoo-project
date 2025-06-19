@@ -5,7 +5,6 @@ from django.http import HttpResponse
 
 from .models import Produit
 
-# Create your views here.
 def liste_produits(request):
 	query = request.GET.get('q', '')
 	produit_list = Produit.objects.all().order_by('date_peremption')
@@ -21,7 +20,6 @@ def liste_produits(request):
 	return render(request, 'produits/liste_produits.html', {'page_obj': page_obj})
 
 def add_produit(request):
-	# This function is now renamed to post_produit
 	return render(request, 'produits/add_produit.html')
 
 def post_produit(request):
