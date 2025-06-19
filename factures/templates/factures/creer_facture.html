@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Créer une Facture{% endblock %}
+{% block content %}
+<h1>Créer une Facture</h1>
+<form method="get" class="search-bar" style="margin-bottom: 1.5rem;">
+    <input type="text" name="q" placeholder="Rechercher un produit..." value="{{ request.GET.q }}" />
+    <button type="submit">Rechercher</button>
+</form>
+<form method="post">
+    {% csrf_token %}
+    <table class="table-produits">
+        <thead>
+            <tr>
+                <th>Sélectionner</th>
+                <th>Nom</th>
+                <th>Prix (€)</th>
+                <th>Date de Péremption</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td><input type="checkbox" name="produits" value="{{ produit.id }}"></td>
+                <td>{{ produit.nom }}</td>
+                <td>{{ produit.prix }}</td>
+                <td>{{ produit.date_peremption }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" class="btn-ajouter">Créer la facture</button>
+</form>
+{% endblock %}

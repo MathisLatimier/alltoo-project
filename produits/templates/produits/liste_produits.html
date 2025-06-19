@@ -1,39 +1,83 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8" />
-    <title>Liste des Produits</title>
-</head>
-<body>
-    <h1>Liste des Produits</h1>
-    <a href="{% url 'add_produit' %}">Ajouter un Produit</a>
+{% extends "base.html" %}
+{% block title %}Liste des Produits{% endblock %}
+{% block content %}
+<h1>Liste des Produits</h1>
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li class="{{ message.tags }}">{{ message }}</li>
-        {% endfor %}
-    </ul>
+<a href="{% url 'add_produit' %}" class="btn-ajouter">Ajouter un Produit</a>
+<a href="{% url 'creer_facture' %}" class="btn-ajouter" style="margin-left: 1rem;">Créer une Facture</a>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form method="get" class="search-bar" style="margin-bottom: 1.5rem;">
+    <input type="text" name="q" placeholder="Rechercher un produit..." value="{{ request.GET.q }}" />
+    <button type="submit">Rechercher</button>
+</form>
+
+<table class="table-produits">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prix (€)</th>
+            <th>Date de Péremption</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for produit in page_obj %}
+        <tr class="row-clickable" data-id="{{ produit.id }}" data-nom="{{ produit.nom }}" data-prix="{{ produit.prix }}" data-date="{{ produit.date_peremption|date:"Y-m-d" }}">
+            <td>{{ produit.nom }}</td>
+            <td>{{ produit.prix }}</td>
+            <td>{{ produit.date_peremption  }}</td>
+            <td>
+                <form method="post" action="{% url 'delete_produit' produit.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-delete" onclick="return confirm('Supprimer ce produit ?');">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="4">Aucun produit disponible.</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<!-- Popup Modal -->
+<div id="produitModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h2>Modifier le Produit</h2>
+    <form id="editProduitForm" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="produit_id" id="modalProduitId">
+      <label for="modalNom">Nom :</label>
+      <input type="text" name="nom" id="modalNom" required>
+      <label for="modalPrix">Prix (€) :</label>
+      <input type="number" name="prix" id="modalPrix" step="0.01" required>
+      <label for="modalDate">Date de Péremption :</label>
+      <input type="date" name="date_peremption" id="modalDate" required>
+      <button type="submit" class="btn-ajouter">Enregistrer</button>
+    </form>
+  </div>
+</div>
+
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Précédent</a>
     {% endif %}
 
-    <ul>
-    {% for produit in page_obj %}
-        <li>{{ produit.nom }} — {{ produit.prix }}€ — Péremption : {{ produit.date_peremption }}</li>
-    {% empty %}
-        <li>Aucun produit disponible.</li>
-    {% endfor %}
-    </ul>
+    <span>Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}</span>
 
-    <div>
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">Précédent</a>
-        {% endif %}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Suivant</a>
+    {% endif %}
+</div>
+{% endblock %}
 
-        <span>Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}</span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Suivant</a>
-        {% endif %}
-    </div>
-</body>
-</html>

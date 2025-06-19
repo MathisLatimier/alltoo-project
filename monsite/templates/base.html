@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mon Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur Mon Site</h1>
+        <nav>
+            <a href="{% url 'liste_produits' %}">Produits</a>
+            <a href="{% url 'liste_factures' %}">Factures</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Page content will go here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mon Site. Tous droits réservés.</p>
+    </footer>
+    <script src="{% static 'main.js' %}"></script>
+</body>
+</html>

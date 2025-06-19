@@ -1,0 +1,303 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #f8f9fa 0%, #e3e6f3 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+header {
+    background: #22223b;
+    color: #fff;
+    padding: 2rem 1rem 1rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(34,34,59,0.08);
+}
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+nav {
+    margin-top: 1rem;
+}
+nav a {
+    color: #c9ada7;
+    margin: 0 1rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+nav a:hover {
+    color: #9a8c98;
+}
+
+main {
+    padding: 2.5rem 1rem 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(34,34,59,0.07);
+    min-height: 60vh;
+}
+
+h1, h2, h3 {
+    color: #4a4e69;
+}
+
+a {
+    color: #4a4e69;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+a:hover {
+    color: #9a8c98;
+    text-decoration: underline;
+}
+
+ul.messages {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+ul.messages li {
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    background: #e9ecef;
+    color: #22223b;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+button, input[type="submit"] {
+    background: #4a4e69;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.2s;
+}
+button:hover, input[type="submit"]:hover {
+    background: #22223b;
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    color: #4a4e69;
+    font-weight: 500;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border: 1px solid #c9ada7;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+footer {
+    background: #22223b;
+    color: #fff;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 8px rgba(34,34,59,0.08);
+}
+
+.table-produits {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(34,34,59,0.06);
+}
+.table-produits th, .table-produits td {
+    padding: 1rem 0.75rem;
+    text-align: left;
+}
+.table-produits th {
+    background: #4a4e69;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.table-produits tr:nth-child(even) {
+    background: #e9ecef;
+}
+.table-produits tr:nth-child(odd) {
+    background: #fff;
+}
+.table-produits td {
+    color: #22223b;
+    font-size: 1.05rem;
+}
+.table-produits tr:hover {
+    background: #b6adab;
+    color: #22223b;
+    transition: background 0.2s;
+}
+
+.btn-ajouter {
+    display: inline-block;
+    background: #4a4e69;
+    color: #fff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.btn-ajouter:hover {
+    background: #22223b;
+}
+
+.pagination {
+    margin-top: 2rem;
+    text-align: center;
+}
+.pagination a {
+    background: #4a4e69;
+    color: #fff;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+.pagination a:hover {
+    background: #22223b;
+}
+.pagination span {
+    margin: 0 1rem;
+    color: #4a4e69;
+    font-weight: 600;
+}
+
+.btn-delete {
+    background: #c0392b;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    transition: background 0.2s;
+}
+.btn-delete:hover {
+    background: #a93226;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #fff;
+    margin: 8% auto;
+    padding: 2rem 2.5rem;
+    border: 1px solid #888;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(34,34,59,0.15);
+    position: relative;
+}
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.close:hover,
+.close:focus {
+    color: #4a4e69;
+    text-decoration: none;
+    cursor: pointer;
+}
+#editProduitForm label {
+    margin-top: 1rem;
+}
+#editProduitForm input {
+    margin-bottom: 1rem;
+}
+
+.facture-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+.facture-item {
+    margin-bottom: 1.2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(34,34,59,0.06);
+    transition: box-shadow 0.2s;
+}
+.facture-item a {
+    display: block;
+    padding: 1.2rem 1.5rem;
+    color: #4a4e69;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+.facture-item a:hover {
+    background: #c9ada7;
+    color: #22223b;
+}
+
+.search-bar {
+    display: flex;
+    border: 1px solid #c9ada7;
+    border-radius: 0.5rem;
+
+    input[type="text"] {
+        flex: 1;
+        margin: 0;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        background-color: transparent;
+    }
+    button {
+        background: #4a4e69;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin: 0;
+    }
+}

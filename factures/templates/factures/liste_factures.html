@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Liste des Factures{% endblock %}
+{% block content %}
+<h1>Liste des Factures</h1>
+<ul class="facture-list">
+{% for facture in factures %}
+    <li class="facture-item">
+        <a href="{% url 'detail_facture' facture.id %}">
+            {{ facture }}<br>
+            Produits : {{ facture.produits.count }}
+        </a>
+    </li>
+{% empty %}
+    <li>Aucune facture.</li>
+{% endfor %}
+</ul>
+{% endblock %}
