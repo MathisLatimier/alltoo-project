@@ -1,4 +1,4 @@
-Projet réalisé en Docker:
+Projet réalisé avec Docker:
 
 Commande pour le lancer
 <code>
