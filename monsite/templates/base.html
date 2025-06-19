@@ -10,8 +10,8 @@
     <header>
         <h1>Géneration de factures</h1>
         <nav>
-            <a href="{% url 'liste_produits' %}">Produits</a>
-            <a href="{% url 'liste_factures' %}">Factures</a>
+            <a href="{% url 'liste_produits' %}" class="{% if request.resolver_match.url_name == 'liste_produits' %}active-nav{% endif %}">Produits</a>
+            <a href="{% url 'liste_factures' %}" class="{% if request.resolver_match.url_name == 'liste_factures' %}active-nav{% endif %}">Factures</a>
         </nav>
     </header>
 
