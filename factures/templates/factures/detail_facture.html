@@ -10,5 +10,6 @@
     {% endfor %}
 </ul>
 <p><strong>Total :</strong> {{ total }}€</p>
+<a href="{% url 'export_facture_pdf' facture.id %}" class="btn-ajouter" target="_blank">Exporter en PDF</a>
 <a href="{% url 'liste_factures' %}" class="btn-ajouter">Retour à la liste des factures</a>
 {% endblock %}

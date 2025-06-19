@@ -4,6 +4,7 @@ from .models import Facture
 from django.contrib import messages
 from django.template.loader import render_to_string
 from django.http import HttpResponse
+from weasyprint import HTML
 
 def creer_facture(request):
     if request.method == 'POST':
@@ -27,4 +28,22 @@ def detail_facture(request, facture_id):
     facture = get_object_or_404(Facture, id=facture_id)
     total = sum([p.prix for p in facture.produits.all()])
     return render(request, 'factures/detail_facture.html', {'facture': facture, 'total': total})
+
+def export_facture_pdf(request, facture_id):
+    print("Exporting facture to PDF", facture_id)
+    facture = get_object_or_404(Facture, id=facture_id)
+    print(f"Facture ID: {facture.id}, Date: {facture.date}")
+    produits = facture.produits.all()
+    total = sum([p.prix for p in produits])
+    html_string = render_to_string('factures/facture_pdf.html', {
+        'facture': facture,
+        'produits': produits,
+        'total': total,
+    })
+
+    html = HTML(string=html_string)
+    pdf = html.write_pdf()
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = f'filename=facture_{facture.id}.pdf'
+    return response
 
